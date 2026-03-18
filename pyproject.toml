@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ros2-pydata"
+version = "0.1.0"
+description = "Convert ROS 2 messages to Python-native data such as NumPy arrays and related structures."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+authors = [
+  { name = "William Engel", email = "william.engel@mdynamix.de" }
+]
+keywords = ["ros2", "python", "numpy", "opencv", "robotics", "messages"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Topic :: Scientific/Engineering",
+  "Topic :: Software Development :: Libraries :: Python Modules"
+]
+
+dependencies = [
+  "numpy",
+  "opencv-python"
+]
+
+[project.urls]
+Homepage = "https://github.com/william-mx/ros2-pydata"
+Repository = "https://github.com/william-mx/ros2-pydata"
+Issues = "https://github.com/william-mx/ros2-pydata/issues"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["ros2_pydata*"]
