@@ -1,0 +1,19 @@
+{
+  "name": "ROS 2 Workspace humble-ros-base",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "remoteUser": "root",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python"
+      ]
+    }
+  },
+  "workspaceFolder": "/ros2_ws",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/ros2_ws,type=bind",
+  "runArgs": [
+    "-p", "8765:8765"
+  ]
+}
