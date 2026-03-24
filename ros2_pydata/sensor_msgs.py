@@ -65,11 +65,28 @@ def compressedimage_to_np(msg):
 
 
 def np_to_compressedimage(image: np.ndarray, timestamp=None) -> CompressedImage:
-    """Converts a NumPy BGR image to a sensor_msgs/CompressedImage message (JPEG)."""
+    """
+    Converts a NumPy image to a sensor_msgs/CompressedImage message.
+    Supports BGR (JPEG) and Mono8/Masks (PNG).
+    """
     ros_image = CompressedImage()
     ros_image.header.stamp = get_ros_timestamp(timestamp)
-    ros_image.format = "jpeg"
-    ros_image.data = np.array(cv2.imencode('.jpg', image)[1]).tobytes()
+    
+    # Check if image is single-channel (Mask/Gray) or multi-channel (BGR)
+    if len(image.shape) == 2 or image.shape[2] == 1:
+        # Use PNG for lossless integer preservation (Masks/Indices)
+        ros_image.format = "png"
+        success, encoded_img = cv2.imencode('.png', image)
+    else:
+        # Use JPEG for standard camera images (Lossy but small)
+        ros_image.format = "jpeg"
+        # Optional: add params for quality, e.g., [cv2.IMWRITE_JPEG_QUALITY, 80]
+        success, encoded_img = cv2.imencode('.jpg', image)
+
+    if not success:
+        raise RuntimeError("Could not encode image for ROS message")
+
+    ros_image.data = np.array(encoded_img).tobytes()
     return ros_image
 
 
