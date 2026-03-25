@@ -76,7 +76,7 @@ def np_to_compressedimage(image: np.ndarray, timestamp=None) -> CompressedImage:
     if len(image.shape) == 2 or image.shape[2] == 1:
         # Use PNG for lossless integer preservation (Masks/Indices)
         ros_image.format = "png"
-        success, encoded_img = cv2.imencode('.png', image)
+        success, encoded_img = cv2.imencode('.png', image, [cv2.IMWRITE_PNG_COMPRESSION, 1])
     else:
         # Use JPEG for standard camera images (Lossy but small)
         ros_image.format = "jpeg"
