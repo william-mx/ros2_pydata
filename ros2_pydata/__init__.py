@@ -33,7 +33,6 @@ from .geometry_msgs import (
 from .vision_msgs import (
     from_label_info,
     to_label_info,
-    to_bbox2d,
     to_detection2d,
     to_detection2d_array,
     from_detection2d,
