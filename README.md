@@ -1,2 +1,2 @@
-# ros2_numpy
-Converts between common ROS message types and NumPy arrays for easier data manipulation.
+# ros2_pydata
+Converts between common ROS2 message types and Python-native data structures (NumPy arrays, dataclasses) for easier data manipulation in Python environments.
