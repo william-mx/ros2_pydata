@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from typing import Optional
+from typing import Optional, Tuple
 
 # --- Detection2D dataclass ---
 
@@ -64,11 +64,11 @@ class Detection2DResult:
         return self.y + self.height / 2
 
     @property
-    def xyxy(self) -> tuple[float, float, float, float]:
+    def xyxy(self) -> Tuple[float, float, float, float]:
         return self.x1, self.y1, self.x2, self.y2
 
     @property
-    def xywh(self) -> tuple[float, float, float, float]:
+    def xywh(self) -> Tuple[float, float, float, float]:
         return self.x, self.y, self.width, self.height
     
 
@@ -117,14 +117,14 @@ class Detection3DResult:
     id:        str = ""
 
     @property
-    def position(self) -> tuple[float, float, float]:
+    def position(self) -> Tuple[float, float, float]:
         return self.x, self.y, self.z
 
     @property
-    def orientation(self) -> tuple[float, float, float, float]:
+    def orientation(self) -> Tuple[float, float, float, float]:
         """Quaternion as (rx, ry, rz, rw)."""
         return self.rx, self.ry, self.rz, self.rw
 
     @property
-    def size(self) -> tuple[float, float, float]:
+    def size(self) -> Tuple[float, float, float]:
         return self.sx, self.sy, self.sz

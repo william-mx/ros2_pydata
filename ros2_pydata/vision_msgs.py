@@ -18,7 +18,7 @@ from ._utils import get_ros_timestamp, get_timestamp_unix
 from .geometry_msgs import np_to_pose
 from .types import Detection2DResult, Detection3DResult
 
-from typing import Optional
+from typing import Optional, List, Tuple
 
 # --- LabelInfo ---
 
@@ -109,9 +109,9 @@ def from_detection2d_array(
     seq:        Optional[int] = None,
     img_width:  Optional[int] = None,
     img_height: Optional[int] = None,
-) -> list[Detection2DResult]:
+) -> List[Detection2DResult]:
     """
-    Converts a vision_msgs/Detection2DArray to a list of :class:`Detection2D`.
+    Converts a vision_msgs/Detection2DArray to a List of :class:`Detection2D`.
     """
     return [
         from_detection2d(det, seq=seq, img_width=img_width, img_height=img_height)
@@ -159,7 +159,7 @@ def to_detection2d(
 
 
 def to_detection2d_array(
-    detections: list[tuple],
+    detections: List[Tuple],
     timestamp=None,
     frame_id:   str = "base_link",
 ) -> Detection2DArray:
@@ -210,13 +210,13 @@ def from_detection3d(
 def from_detection3d_array(
     msg,
     seq: Optional[int] = None,
-) -> tuple[list[Detection3DResult], float]:
+) -> Tuple[List[Detection3DResult], float]:
     """
-    Converts a vision_msgs/Detection3DArray to a list of :class:`Detection3D`.
+    Converts a vision_msgs/Detection3DArray to a List of :class:`Detection3D`.
 
     Returns
     -------
-    Tuple[list[Detection3DResult], float]
+    Tuple[List[Detection3DResult], float]
         Detections and Unix timestamp from the array header.
     """
     return (
@@ -261,7 +261,7 @@ def to_detection3d(
 
 
 def to_detection3d_array(
-    detections: list,
+    detections: List,
     timestamp=None,
     frame_id: str = 'base_link',
 ) -> Detection3DArray:
